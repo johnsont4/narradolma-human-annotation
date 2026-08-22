@@ -28,6 +28,10 @@ python export_annotations.py           # writes to both destinations
 python export_annotations.py --dry-run # preview without writing
 ```
 
+This repo gets all five files. `llm-narrative-annotations` gets only the three
+task parquets — it reads just the `*_gold` columns, and has its own, larger
+notion of "corpus.parquet".
+
 New annotators are picked up automatically — the exporter discovers them from
 the results directories rather than a hardcoded list.
 
@@ -37,7 +41,7 @@ Five parquet files in `data/`, all keyed on `safe_instance_id`:
 
 | File | Rows | What |
 |---|---|---|
-| `corpus.parquet` | 1072 | Every sampled passage + metadata. No labels. |
+| `corpus.parquet` | 1072 | Every sampled passage + metadata. No labels. Covers the whole sample, not just annotated instances, which is what `features/extract_features.py` and the corpus-level EDA need. |
 | `setting_annotations.parquet` | 400 | Setting task, gold-annotated instances |
 | `agency_annotations.parquet` | 405 | Agency task |
 | `event_relation_annotations.parquet` | 440 | Event-relation task |
