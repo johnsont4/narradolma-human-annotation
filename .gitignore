@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ── project ───────────────────────────────────────────────────────────────────
+.DS_Store
+.ipynb_checkpoints/
+
+# data/*.parquet IS tracked on purpose: it makes the repo clone-and-run.
+# Refresh it with export_annotations.py in potato/teagan_tasks.
