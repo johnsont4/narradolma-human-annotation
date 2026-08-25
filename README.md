@@ -71,9 +71,37 @@ annotator worked on a strict subset of the gold instances.
 ```
 data/         parquet, written by potato's export_annotations.py
 notebooks/    analysis; nb_utils.load() is the only data entry point
+              nb_utils.py          loading, coverage, shared plot style
+              agreement.py         IAA metrics and pair collection
+              agreement_report.py  the HTML tables and disagreement cards
 features/     extract_features.py -> features.csv (spaCy, VADER, concreteness)
 figures/      save_*.py -> figures/pdfs/, plus the paper's .tex table
 release/      export_release.py (anonymize + trim) -> upload_to_hf.py
+```
+
+## Notebooks
+
+Six, each answering one question. All read parquet through `nb_utils`; none
+reaches back into potato.
+
+| Notebook | Question |
+|---|---|
+| `corpus_overview.ipynb` | What is in the 1072-document sample? (no labels) |
+| `annotation_coverage.ipynb` | Who annotated which queue indexes, where do they overlap, what is open? |
+| `annotator_agreement.ipynb` | How much do annotators agree, and where do they disagree? |
+| `label_distributions.ipynb` | How are the labels distributed, and how do they vary by topic? |
+| `labels_by_source.ipynb` | Do the labels vary by source folder? |
+| `features_vs_labels.ipynb` | How do automatic features relate to the manual dimensions? |
+
+Run them with the `pretraining_env` kernel — it is the one with `krippendorff`,
+`spacy` and `transformers`, and every notebook now records it in its metadata.
+
+Notebook **outputs are stripped on commit** by an nbstripout filter, so diffs
+show code rather than a wall of re-encoded base64. Outputs still live in your
+working copy; a fresh clone opens to empty cells and needs a run. After cloning:
+
+```bash
+pip install nbstripout && nbstripout --install --attributes .gitattributes
 ```
 
 ## Setup

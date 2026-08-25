@@ -7,6 +7,7 @@ scipy
 # Notebooks
 jupyter
 ipython
+nbstripout         # git filter: strips outputs on commit (see README)
 
 # Plotting
 matplotlib
@@ -21,7 +22,7 @@ spacy              # plus: python -m spacy download en_core_web_sm
 nltk               # plus: python -m nltk.downloader vader_lexicon
 openpyxl           # reads the Brysbaert concreteness .xlsx
 
-# notebooks/data_distribution_eda.ipynb (token counts)
+# notebooks/corpus_overview.ipynb (token counts)
 transformers
 
 # release/upload_to_hf.py
